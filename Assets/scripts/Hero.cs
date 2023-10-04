@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero : MonoBehaviour
+public class Hero : Entity
 {
     [SerializeField] private float speed = 3f; // скорость движения
     [SerializeField] private int lives = 5; // скорость движения
@@ -13,11 +13,13 @@ public class Hero : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
 
+    public static Hero Instance { get; set; }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        Instance = this;
     }
 
 
@@ -28,11 +30,14 @@ public class Hero : MonoBehaviour
 
     private void Update()
     {
-        Vector3 dir = new Vector3();
         if (Input.GetButton("Horizontal"))
             Run();
         if (isGrounded && Input.GetButtonDown("Jump"))
             Jump();
+        /*if (transform.position.x < -12)
+        {
+            rb.AddForce(transform.up * 0.01f + transform.right * 0.05f, ForceMode2D.Impulse);
+        }*/
     }
 
     private void Run()
@@ -54,4 +59,11 @@ public class Hero : MonoBehaviour
         Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 0.3f);
         isGrounded = collider.Length > 1;
     }
+
+    public override void GetDamage()
+    {
+        lives -= 1;
+        Debug.Log(lives);
+    }
+
 }
