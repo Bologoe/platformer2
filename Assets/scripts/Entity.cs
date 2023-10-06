@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour
 
     public virtual void GetDamage(int dmg)
     {
-
+        
     }
 
     public virtual void Die()
