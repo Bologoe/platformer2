@@ -26,12 +26,12 @@ public class CameraController : MonoBehaviour
 
         pos = player.position;
         pos.y += Ychanger;
-        pos.z = -10f;
+        pos.z = -90f;
 
-        if (pos.x > 5.3f)
+        /*if (pos.x > 5.3f)
             pos.x = 5.3f;
         else if (pos.x < -5.6f)
-            pos.x = -5.6f;
+            pos.x = -5.6f;*/
         
         transform.position = Vector3.Lerp(transform.position, pos, 10*Time.deltaTime);
 

@@ -2,28 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Walker : Enemy
+public class Snail : Entity
 {
     private float speed = 2f;
     private Vector3 dir;
     private SpriteRenderer sprite;
-    
 
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = 5;
-        health = maxHealth;
         dir = -1f * transform.right;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
-        {
-            Die();
-        }
         Move();
     }
 
@@ -39,6 +32,5 @@ public class Walker : Enemy
             Hero.Instance.GetDamage();
        } 
     }
-
 
 }
